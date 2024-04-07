@@ -1,9 +1,11 @@
-import NavBar from "@/components/NavBar";
+import Categories from "@/components/Categories"
+import ProductsContainer from "@/components/ProductsContainer";
+
 export default function Home() {
   return (
     <>
-    <NavBar></NavBar>
-    <h1>Estas en el Home</h1>
+    <Categories />
+    <ProductsContainer/>
     </>
   );
 }
