@@ -4,9 +4,9 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 const links=[
-    {name:"home", text:"Inicio", href:"/"},
-    {name:"login",text:"Inicia sesión", href:"/login"},
-    {name:"register", text:"Regístrate", href:"/register"}
+    {name:"home", text:"Home", href:"/"},
+    {name:"login",text:"Sing in", href:"/login"},
+    {name:"register", text:"Register", href:"/register"}
 ]
 
 const NavBar: React.FC=()=>{

@@ -2,22 +2,22 @@
 import filter from "@/helpers/filter";
 
 const categories=[
-    { name: 'Smartphones', text: 'Smartphones' },
-    { name: 'Laptops', text: 'Laptops' },
-    { name: 'Tablets', text: 'Tablets' },
-    { name: 'Headphones', text: 'Auriculares'},
-    { name: 'Cameras', text:'Camaras' },
-    { name: 'Printers', text:'Impresoras'},
-    { name: 'Monitors', text:'Monitores' },
-    { name: 'Storage', text:'Almacenamiento' },
-    { name: 'Accessories', text:'Accesorios' }
+    { name: 'Smartphones'},
+    { name: 'Laptops'},
+    { name: 'Tablets'},
+    { name: 'Headphones'},
+    { name: 'Cameras'},
+    { name: 'Printers'},
+    { name: 'Monitors'},
+    { name: 'Storage'},
+    { name: 'Accessories' }
 ]
 
 const Categories: React.FC=()=>{
     return(
     <div className='flex items-center justify-between flex-wrap bg-teal-500 p-1 px-8 text-xs'>
         {categories.map((category)=>{
-                return(<button key={category.name} onClick={filter}>{category.text}</button>)
+                return(<button key={category.name} onClick={filter}>{category.name}</button>)
             })}
     </div>
     )
