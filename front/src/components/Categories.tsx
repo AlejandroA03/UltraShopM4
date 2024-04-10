@@ -15,7 +15,7 @@ const categories=[
 
 const Categories: React.FC=()=>{
     return(
-    <div className='flex items-center justify-between flex-wrap bg-teal-500 p-1 px-8 text-xs'>
+    <div className='flex items-center justify-between flex-wrap bg-gray-900 p-1 px-8 text-xs'>
         {categories.map((category)=>{
                 return(<button key={category.name} onClick={filter}>{category.name}</button>)
             })}

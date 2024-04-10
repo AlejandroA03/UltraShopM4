@@ -1,26 +1,17 @@
-"use client"
 import ProductCard from "@/components/ProductCard";
-import { useEffect, useState } from "react";
-import axios from "axios"
 import { IProduct } from "@/app/types";
+import getProducts from "@/helpers/getProducts";
 
-const GETPRODUCTS_URL= "http://localhost:3001/products"
-
-const ProductsContainer:React.FC=()=>{
+const ProductsContainer:React.FC= async ()=>{
     
-    const [products, setProducts]=useState([])
-  
-    useEffect(()=>{
-        axios.get(GETPRODUCTS_URL)
-        .then(response => response.data)
-        .then(data=> setProducts(data))
-        }, [])
+    const products=await getProducts()
 
     return(
         <div className="m-5 flex flex-wrap place-content-center">
         {products.map((product:IProduct)=>{
             return(
                 <ProductCard 
+                id={product.id}
                 key={product.name}
                 name={product.name}
                 description={product.description}
