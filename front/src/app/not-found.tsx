@@ -1,6 +1,6 @@
 "use client"
 
-export default function Error() {
+export default function NotFound() {
     return (
         <div className="p-10 mt-24 mb-60 justify-around">
             <h1 className="text-3xl mx-10">oh...</h1>
