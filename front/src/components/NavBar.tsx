@@ -15,7 +15,7 @@ const links=[
 const NavBar: React.FC=()=>{
     const pathname= usePathname()
     return(
-        <nav className=''>
+        <nav className='max-md:hidden'>
             <div className='flex items-center justify-between flex-wrap bg-gray-900 p-1 px-5 drop-shadow-xl'>
                 <Link href="/">
                 <Image src={logo} width="100" alt="logo" />
