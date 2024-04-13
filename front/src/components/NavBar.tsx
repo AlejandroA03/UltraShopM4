@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import logo from "../../public/logo.png"
 import Image from 'next/image'
-import Searchbar from './Searchbar'
 
 const links=[
     {name:"home", text:"Home", href:"/"},
@@ -20,7 +19,6 @@ const NavBar: React.FC=()=>{
                 <Link href="/">
                 <Image src={logo} width="100" alt="logo" />
                 </Link>
-                <Searchbar />
                 <ul>
                     {links.map((link)=>{
                         return(<Link href={link.href} key={link.name}

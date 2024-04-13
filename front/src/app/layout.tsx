@@ -17,8 +17,8 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Hamburger/>
         <CartLogin/>
+        <Hamburger/>
         <NavBar/>
         {children}
         <Footer/>

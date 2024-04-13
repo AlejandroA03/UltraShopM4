@@ -18,10 +18,13 @@ const Hamburger: React.FC=()=>{
     
     return(
         <div className="md:hidden w-full flex items-center justify-between flex-wrap bg-gray-900">
-            <button className="block size-5 rounded-lg bg-orange-500 m-5 text-center align-middle text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" onClick={HamburgerClick}>X</button>
-            <div className={`${open? "h-full fixed left-0 top-0 w-3/4 z-10 border-2 rounded-sm": "hidden"}`}>
+            <button className="block size-10 rounded-lg bg-orange-500 m-5 text-center align-middle text-sm font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" onClick={HamburgerClick}>&#9776;</button>
+            <div className={`${open? "h-full bg-gray-700 fixed left-0 top-0 w-3/4 z-10 border-e-2 border-slate-500 rounded-sm": "hidden"}`}>
+                <button className="block size-10 rounded-lg bg-orange-500 m-5 text-center align-middle text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" onClick={HamburgerClick}>X</button>
                 <ul>
-                    <Link href="/" onClick={HamburgerClick}>Home</Link>
+                    <Link href="/" onClick={HamburgerClick} className="block text-center my-5 w-full border-b-2 border-slate-600">Home</Link>
+                    <Link href="/about" onClick={HamburgerClick} className="block text-center my-5 w-full border-b-2 border-slate-600">About</Link>
+                    <Link href="/products" onClick={HamburgerClick} className="block text-center my-5 border-b-2 border-slate-600">Products</Link>
                 </ul>
             </div>
             <Link href="/">
