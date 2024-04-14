@@ -18,3 +18,13 @@ export interface IProductOnCart {
     categoryId: number
     quantity:number
 }
+
+export interface IRegister{
+    [key: string]: any;
+    name:string,
+	email:string,
+	password:string,
+	address:string,
+	phone:string,
+    confirmpassword?:string
+}

@@ -1,7 +1,7 @@
 "use client"
 
 import { IProduct } from "@/app/types";
-import {addCart} from "@/helpers/addCart";
+import {addCart} from "@/helpers/cartFunctions";
 import Link from "next/link";
 
 const ProductCard: React.FC<IProduct>=(product)=>{
