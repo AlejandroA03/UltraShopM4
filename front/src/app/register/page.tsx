@@ -16,7 +16,8 @@ export default function Register() {
 	    email:"",
 	    password:"",
 	    address:"",
-	    phone:""
+	    phone:"",
+      confirmpassword:""
     }
 
     const [data, setData]= useState(initialState)
@@ -34,11 +35,11 @@ export default function Register() {
       
       axios.post(POSTUSER_URL, newUser)
       .then(({data})=>data)
-      .then((userInDB)=>{
+      .then(()=>{
           alert(`User has been created!`)
           router.push("/login")
       })
-      .catch((error)=>("User already exists"));
+      .catch((error)=>alert("User already exists"));
   }
   const handleReset= (event:any)=>{
     event.preventDefault()

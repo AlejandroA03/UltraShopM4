@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import Image from "next/image"
 import cartImage from "../../public/cart.png"
 import { useState } from "react"
@@ -9,20 +9,35 @@ import { IProductOnCart } from "@/app/types"
 import { cartTotal, removeItem } from "@/helpers/cartFunctions"
 
 
+
 const links=[
     {name:"login", text:"Sign in", href:"/login"},
     {name:"register", text:"Register", href:"/register"}
 ]
 
-let login=false
-
 const CartLogin: React.FC=()=>{
 
+    const router=useRouter()
     const [cart, setCart]= useState(false)
-    const [cartProducts, setCartProducts]=useState([])
+    const [cartProducts, setCartProducts]=useState<IProductOnCart[]>([])
     const [total, setTotal] = useState(0)
+    const [token, setToken]=useState(localStorage.getItem('userToken') ?? null)
+
+    const handleLogout=()=>{
+        setToken(null);
+        localStorage.removeItem('userToken')
+        router.push("/")
+    }
+
+    const handleCheckout=()=>{
+        let productsId=[]
+        for(let i=0; i<cartProducts.length;i++){
+            productsId.push(cartProducts[i].id)
+        }
+    }
 
     const CartClick=()=>{
+        setCart(true)
         if(localStorage.cart){
             setCartProducts(JSON.parse(localStorage.cart))
             setTotal(cartTotal)
@@ -30,7 +45,6 @@ const CartLogin: React.FC=()=>{
             setCartProducts([])
             setTotal(0)
         }
-        setCart(true)
     }
 
     const remove=(id:number|undefined)=>{
@@ -49,7 +63,7 @@ const CartLogin: React.FC=()=>{
     return(
         <div className=''>
             <div className='w-full flex items-center justify-between flex-wrap bg-gray-900 border-b-2 border-gray-800'>
-                {!login? <ul>
+                {!token ? <ul>
                     {links.map((link)=>{
                         return(<Link href={link.href} key={link.name}
                         className={`px-6 text-xs hover:brightness-75
@@ -62,7 +76,7 @@ const CartLogin: React.FC=()=>{
                             className={`px-6 text-xs hover:brightness-75
     
                             ${pathname=== "/orders"? "cursor-default brightness-75": ""}`}>My orders</Link>
-                        <span className="text-xs">Log Out</span>
+                        <span className="text-xs cursor-pointer" onClick={handleLogout}>Log Out</span>
                     </ul>}
                 <Image src={cartImage} width="30" alt="cart" className="mx-5 my-2 hover:cursor-pointer" onClick={CartClick}/>
                 <div onMouseLeave={cartLeave} className={`${cart? "fixed h-full bg-gray-700 right-0 top-0 max-md:w-3/4 w-1/4 z-10 border-s-2 border-slate-500 rounded-sm": "hidden"}`}>

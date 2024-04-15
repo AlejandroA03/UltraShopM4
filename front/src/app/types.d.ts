@@ -28,3 +28,10 @@ export interface IRegister{
 	phone:string,
     confirmpassword?:string
 }
+
+export interface IOrder{
+    id?:number
+    status:string,
+    date: Date,
+    products:IProduct[]
+}
