@@ -4,9 +4,10 @@ import Link from "next/link"
 import { usePathname, useRouter } from 'next/navigation'
 import Image from "next/image"
 import cartImage from "../../public/cart.png"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { IProductOnCart } from "@/app/types"
 import { cartTotal, removeItem } from "@/helpers/cartFunctions"
+import postOrder from "@/helpers/postOrder"
 
 
 
@@ -21,7 +22,16 @@ const CartLogin: React.FC=()=>{
     const [cart, setCart]= useState(false)
     const [cartProducts, setCartProducts]=useState<IProductOnCart[]>([])
     const [total, setTotal] = useState(0)
-    const [token, setToken]=useState(localStorage.getItem('userToken') ?? null)
+    const [token, setToken]=useState<string|null>("temporalToken")
+
+    useEffect(() => {
+        const checkToken = async () => {
+            const checkedToken = await localStorage.getItem('userToken');
+            setToken(checkedToken);
+        };
+
+        checkToken();
+    }, []);
 
     const handleLogout=()=>{
         setToken(null);
@@ -29,11 +39,21 @@ const CartLogin: React.FC=()=>{
         router.push("/")
     }
 
-    const handleCheckout=()=>{
-        let productsId=[]
-        for(let i=0; i<cartProducts.length;i++){
-            productsId.push(cartProducts[i].id)
+    const handleCheckout= async()=>{
+        if(token){
+            let productsId=[]
+            for(let i=0; i<cartProducts.length;i++){
+                productsId.push(cartProducts[i].id)
+            }
+            await postOrder(productsId)
+            localStorage.removeItem("cart")
+            setCartProducts([])
+            setTotal(0)
+            alert("Thanks for your purchase!")
+        }else {
+            window.location.replace("/login")
         }
+        
     }
 
     const CartClick=()=>{
@@ -97,7 +117,7 @@ const CartLogin: React.FC=()=>{
                         })}
                     </ul>
                     {total?<div className="absolute bottom-10 w-28 mx-10 rounded-lg text-center">US ${total}</div>:""}
-                    <button className="absolute bottom-4 w-28 mx-10 rounded-lg text-center bg-green-500 disabled:bg-gray-400" disabled={cartProducts.length==0}>Checkout</button>
+                    <button className="absolute bottom-4 w-28 mx-10 rounded-lg text-center bg-green-500 disabled:bg-gray-400" disabled={cartProducts.length==0} onClick={handleCheckout}>Checkout</button>
                 </div>
             </div>
         </div>

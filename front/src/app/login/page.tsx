@@ -2,13 +2,10 @@
 
 import { useState } from "react";
 import axios from "axios";
-import { useRouter } from 'next/navigation'
 
 const LOGINUSER_URL="http://localhost:3001/users/login"
 
 export default function Login() {
-  const router=useRouter()
-
   const [userData, setUserData]=useState({
     email:"",
     password:""

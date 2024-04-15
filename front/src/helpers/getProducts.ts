@@ -1,6 +1,6 @@
 import { IProduct } from "@/app/types";
 
-const GETPRODUCTS_URL= "http://localhost:3001/products"
+const GETPRODUCTS_URL= process.env.NEXT_PUBLIC_API_URL
 
 const productsToPreLoad = [
     {
@@ -42,7 +42,7 @@ const productsToPreLoad = [
   ]
 
 async function getProductsDB() {
-    const res = await fetch(GETPRODUCTS_URL)
+    const res = await fetch(`${GETPRODUCTS_URL}/products`)
     const products: IProduct[] = await res.json()
     return products
 }
