@@ -9,6 +9,8 @@ export default function OrdersContainer() {
         const fetchOrders = async () => {
             const fetchedOrders = await getOrders();
             setOrders(fetchedOrders);
+            console.log(orders)
+            console.log(orders[1].products)
         };
 
         fetchOrders();
@@ -18,8 +20,6 @@ export default function OrdersContainer() {
         <div className="m-5 flex flex-wrap place-content-center">
             {orders?
             orders.map((order: IOrder) => {
-                console.log(order)
-                console.log(order.products)
                 order.date = new Date(order.date);
                 const formDate = `${order.date.getDate()}/${order.date.getMonth() + 1}/${order.date.getFullYear()}`;
                 return (
