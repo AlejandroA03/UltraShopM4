@@ -7,8 +7,8 @@ import Image from 'next/image'
 
 const links=[
     {name:"home", text:"Home", href:"/"},
-    {name:"about", text:"About Us", href:"/about"},
-    {name:"products", text:"Products", href:"/products"}
+    {name:"products", text:"Products", href:"/products"},
+    {name:"about", text:"About Us", href:"/about"}
 ]
 
 const NavBar: React.FC=()=>{

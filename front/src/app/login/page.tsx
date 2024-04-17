@@ -3,13 +3,14 @@
 import { useState } from "react";
 import axios from "axios";
 import { useUserContext } from "@/components/UserProvider";
+import { ILogin } from "../types";
 
 const LOGINUSER_URL=process.env.NEXT_PUBLIC_API_URL
 
 export default function Login() {
   const {token, setToken}=useUserContext()
 
-  const [userData, setUserData]=useState({
+  const [userData, setUserData]=useState<ILogin>({
     email:"",
     password:""
   })

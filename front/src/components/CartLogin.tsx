@@ -51,6 +51,7 @@ const CartLogin: React.FC=()=>{
             setCartProducts([])
             setTotal(0)
             alert("Thanks for your purchase!")
+            window.location.replace("/orders")
         }else {
             window.location.replace("/login")
         }

@@ -8,6 +8,10 @@ export interface IProduct {
     categoryId: number
 }
 
+export interface ICategory{
+    name: string
+}
+
 export interface IProductOnCart {
     id?: number
     name: string
@@ -34,4 +38,9 @@ export interface IOrder{
     status:string,
     date: Date,
     products:IProduct[]
+}
+
+export interface ILogin{
+    email:string,
+    password:string
 }
