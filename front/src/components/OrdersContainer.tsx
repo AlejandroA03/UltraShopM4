@@ -16,7 +16,8 @@ export default function OrdersContainer() {
 
     return (
         <div className="m-5 flex flex-wrap place-content-center">
-            {orders.map((order: IOrder) => {
+            {orders?
+            orders.map((order: IOrder) => {
                 order.date = new Date(order.date);
                 const formDate = `${order.date.getDate()}/${order.date.getMonth() + 1}/${order.date.getFullYear()}`;
                 return (
@@ -30,7 +31,8 @@ export default function OrdersContainer() {
                         })}
                     </div>
                 );
-            })}
+            })
+            : ""}
         </div>
     );
 }
