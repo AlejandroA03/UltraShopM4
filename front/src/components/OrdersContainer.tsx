@@ -9,8 +9,6 @@ export default function OrdersContainer() {
         const fetchOrders = async () => {
             const fetchedOrders = await getOrders();
             setOrders(fetchedOrders);
-            console.log(orders)
-            console.log(orders[1].products)
         };
 
         fetchOrders();
