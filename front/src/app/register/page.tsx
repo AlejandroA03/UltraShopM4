@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import validateUser from "@/helpers/validateUser";
 import { IRegister } from "../types";
 
-const POSTUSER_URL="http://localhost:3001/users/register"
+const POSTUSER_URL=process.env.NEXT_PUBLIC_API_URL
 
 export default function Register() {
     const router=useRouter()
@@ -33,7 +33,7 @@ export default function Register() {
         phone:data.phone
       }
       
-      axios.post(POSTUSER_URL, newUser)
+      axios.post(`${POSTUSER_URL}/users/register`, newUser)
       .then(({data})=>data)
       .then(()=>{
           alert(`User has been created!`)

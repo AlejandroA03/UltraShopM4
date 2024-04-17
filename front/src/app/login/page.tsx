@@ -2,10 +2,13 @@
 
 import { useState } from "react";
 import axios from "axios";
+import { useUserContext } from "@/components/UserProvider";
 
-const LOGINUSER_URL="http://localhost:3001/users/login"
+const LOGINUSER_URL=process.env.NEXT_PUBLIC_API_URL
 
 export default function Login() {
+  const {token, setToken}=useUserContext()
+
   const [userData, setUserData]=useState({
     email:"",
     password:""
@@ -19,11 +22,14 @@ export default function Login() {
   const submitHandler =(event:any)=>{
     event.preventDefault()
 
-    axios.post(LOGINUSER_URL, userData)
+    axios.post(`${LOGINUSER_URL}/users/login`, userData)
     .then(({data})=> data)
     .then(data=>{
         localStorage.setItem("userToken", data.token)
-        window.location.replace("/")
+    })
+    .then(data=>{
+      setToken(localStorage.getItem("userToken"))
+      window.location.replace("/")
     })
     .catch(()=>alert("Incorrect email or password"));
   }

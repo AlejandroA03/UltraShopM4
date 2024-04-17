@@ -8,6 +8,7 @@ import { useState, useEffect } from "react"
 import { IProductOnCart } from "@/app/types"
 import { cartTotal, removeItem } from "@/helpers/cartFunctions"
 import postOrder from "@/helpers/postOrder"
+import { useUserContext } from "./UserProvider"
 
 
 
@@ -22,7 +23,7 @@ const CartLogin: React.FC=()=>{
     const [cart, setCart]= useState(false)
     const [cartProducts, setCartProducts]=useState<IProductOnCart[]>([])
     const [total, setTotal] = useState(0)
-    const [token, setToken]=useState<string|null>("temporalToken")
+    const {token, setToken}=useUserContext()
 
     useEffect(() => {
         const checkToken = async () => {
@@ -96,7 +97,7 @@ const CartLogin: React.FC=()=>{
                             className={`px-6 text-xs hover:brightness-75
     
                             ${pathname=== "/orders"? "cursor-default brightness-75": ""}`}>My orders</Link>
-                        <span className="text-xs cursor-pointer" onClick={handleLogout}>Log Out</span>
+                        <span className="text-xs cursor-pointer hover:brightness-75" onClick={handleLogout}>Log Out</span>
                     </ul>}
                 <Image src={cartImage} width="30" alt="cart" className="mx-5 my-2 hover:cursor-pointer" onClick={CartClick}/>
                 <div onMouseLeave={cartLeave} className={`${cart? "fixed h-full bg-gray-700 right-0 top-0 max-md:w-3/4 w-1/4 z-10 border-s-2 border-slate-500 rounded-sm": "hidden"}`}>
@@ -117,7 +118,7 @@ const CartLogin: React.FC=()=>{
                         })}
                     </ul>
                     {total?<div className="absolute bottom-10 w-28 mx-10 rounded-lg text-center">US ${total}</div>:""}
-                    <button className="absolute bottom-4 w-28 mx-10 rounded-lg text-center bg-green-500 disabled:bg-gray-400" disabled={cartProducts.length==0} onClick={handleCheckout}>Checkout</button>
+                    <button className="absolute bottom-4 w-28 mx-10 rounded-lg text-center bg-orange-500 disabled:bg-gray-400" disabled={cartProducts.length==0} onClick={handleCheckout}>Checkout</button>
                 </div>
             </div>
         </div>

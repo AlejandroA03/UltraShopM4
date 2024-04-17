@@ -5,6 +5,7 @@ import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import CartLogin from "@/components/CartLogin";
 import Hamburger from "@/components/Hamburger";
+import { UserProvider } from "@/components/UserProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,11 +18,13 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
   return (
     <html lang="en">
       <body className={inter.className}>
-        <CartLogin/>
-        <Hamburger/>
-        <NavBar/>
-        {children}
-        <Footer/>
+        <UserProvider>
+          <CartLogin/>
+          <Hamburger/>
+          <NavBar/>
+          {children}
+          <Footer/>
+        </UserProvider>
       </body>
     </html>
   );

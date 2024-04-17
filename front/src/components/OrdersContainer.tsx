@@ -20,12 +20,12 @@ export default function OrdersContainer() {
                 order.date = new Date(order.date);
                 const formDate = `${order.date.getDate()}/${order.date.getMonth() + 1}/${order.date.getFullYear()}`;
                 return (
-                    <div key={order.id}>
-                        <h2>{order.status}</h2>
-                        <h2>{formDate}</h2>
+                    <div key={order.id} className='w-60 bg-gray-800 m-6 p-6 rounded-lg border-2 border-orange-500'>
+                        <h2 className='uppercase font-semibold text-lg mb-2'>{order.status}</h2>
+                        <h2 className='mx-3 mb-2'>{formDate}</h2>
                         {order.products.map((product) => {
                             return (
-                                <h2 key={product.id}>{product.name}</h2>
+                                <h2 key={product.id} className='font-thin'>{product.name}</h2>
                             );
                         })}
                     </div>

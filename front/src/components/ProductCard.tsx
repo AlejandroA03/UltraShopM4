@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const ProductCard: React.FC<IProduct>=(product)=>{
     return(
-        <div className="relative flex w-72 flex-col rounded-xl bg-gray-700 bg-clip-border text-gray-700 shadow-md mx-3 my-6">
+        <div className="relative flex w-72 flex-col rounded-xl bg-gray-800 bg-clip-border shadow-md mx-3 my-6">
             <div className="relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl text-white shadow-lg shadow-blue-gray-500/40">
                 <img className="relative h-40 w-full brightness-75 hover:brightness-100" src={product.image} alt="Image"/>
             </div>
