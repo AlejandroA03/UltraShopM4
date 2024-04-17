@@ -33,5 +33,5 @@ export interface IOrder{
     id?:number
     status:string,
     date: Date,
-    products:IProduct[]
+    products:Array
 }
