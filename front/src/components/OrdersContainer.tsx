@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useEffect } from 'react';
 import { IOrder, IProduct } from "@/app/types";
 import getOrders from "@/helpers/getOrders";
